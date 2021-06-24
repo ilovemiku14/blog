@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: root
+    password: 123ywB147
+    url: jdbc:mysql://mysql:3306/blog?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  type-aliases-package: com.yi.blog.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-header-size: 8096
+    threads:
+      max: 1000
+    remoteip:
+      remote-ip-header: x-forward-for
+jwt:
+  secret: secret
+  expiration: 7200000
+  tokenHeader: Authorization
+  tokenHead: Bearer
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+
+#  线上环境

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!--mybatis业务文件-->
+<mapper namespace="com.yi.blog.mapper.ArticleMapper">
+    <select id="selectAll" resultType="com.yi.blog.pojo.Article" parameterType="String">
+      select article_uid,article_title,article_abstract,article_tag,article_time from article where 1=1
+      <if test="type != null">
+          and article_type = #{type}
+      </if>
+    </select>
+    <update id="updateArticle" parameterType="com.yi.blog.pojo.Article">
+        UPDATE blog.article SET article_title=#{article_title} ,article_abstract=#{article_abstract} ,
+        article_subject=#{article_subject},article_reviser = #{article_reviser},article_time=#{article_time},
+        article_tag=#{article_tag},article_type=#{article_type}
+        WHERE article_uid = #{article_uid}
+    </update>
+    <delete id="detectTimeaxis" parameterType="int">
+        delete  from blog.article where article_uid=#{article_uid}
+    </delete>
+    <insert id="addArticle" parameterType="Article">
+        INSERT INTO blog.article(article_title, article_abstract, article_subject, article_tag, article_reviser, article_time,article_type)
+        VALUES (#{article_title}, #{article_abstract}, #{article_subject}, #{article_tag}, #{article_reviser}, #{article_time},#{article_type})
+    </insert>
+    <select id="selectAllCount" resultType="Integer" parameterType="HashMap">
+      SELECT COUNT(article_uid) FROM article where 1=1
+      <if test="type != null">
+          and article_type = #{type}
+      </if>
+    </select>
+    <select id="selectBlog" resultType="Article" parameterType="int">
+        select * from article where article_uid=#{article_uid}
+    </select>
+</mapper>

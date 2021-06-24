@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    username: root
+    password: 123ywb147
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    超时时间ms
+    timeout: 10000
+    database: 0
+    lettuce:
+      pool:
+        max-wait: 10000ms
+        max-active: 1024
+        max-idle: 200
+        min-idle: 5
+mybatis:
+  type-aliases-package: com.yi.blog.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+server:
+  port: 8090
+jwt:
+  secret: secret
+  expiration: 7200000
+  tokenHeader: Authorization
+  tokenHead: Bearer
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!--mybatis业务文件-->
+<mapper namespace="com.yi.blog.mapper.UserMapper">
+    <select id="getUser" resultType="user" parameterType="String">
+        select * from blog.user where username = #{username}
+    </select>
+    <select id="selectAll" resultType="com.yi.blog.pojo.user">
+        select * from blog.user
+    </select>
+    <update id="updateUser" parameterType="HashMap">
+         UPDATE blog.user SET username=#{username},email=#{email},qq=#{qq},jurisdiction=#{jurisdiction}
+        WHERE uid = #{uid}
+    </update>
+    <delete id="detectUser" parameterType="int">
+        delete  from blog.user where uid=#{uid}
+    </delete>
+    <select id="selectAllCount" resultType="Integer" parameterType="HashMap">
+        SELECT COUNT(user.`uid`) FROM USER WHERE 1=1
+        <if test="type != null">
+--             and jurisdiction = #{type}
+and 1=1
+        </if>
+    </select>
+    <insert id="addUser" parameterType="HashMap">
+        INSERT INTO blog.user(username, password, user_img, email, qq, jurisdiction)
+        VALUES (#{username}, #{password}, #{user_img}, #{email}, #{qq}, #{jurisdiction})
+    </insert>
+</mapper>

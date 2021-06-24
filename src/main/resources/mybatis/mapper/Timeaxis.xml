@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis业务文件-->
+<mapper namespace="com.yi.blog.mapper.TimeaxisMapper">
+    <select id="selectAll" resultType="com.yi.blog.pojo.Timeaxis" >
+        select * from blog.timeaxis where 1=1
+    </select>
+    <update id="updateTimeaxis" parameterType="com.yi.blog.pojo.Timeaxis">
+        UPDATE blog.timeaxis SET context=#{context} ,time=#{time} ,
+        axis_color=#{axis_color},axis_icon = #{axis_icon}
+        WHERE axis = #{axis}
+    </update>
+    <delete id="detectTimeaxis" parameterType="int">
+        delete  from blog.timeaxis where axis=#{axis}
+    </delete>
+    <insert id="addTimeaxis" parameterType="Timeaxis">
+        INSERT INTO blog.timeaxis(context, time, axis_color, axis_icon)
+        VALUES (#{context}, #{time}, #{axis_color}, #{axis_icon})
+    </insert>
+    <select id="selectAllCount" resultType="Integer" parameterType="HashMap">
+        SELECT COUNT(axis) FROM timeaxis where 1=1
+    </select>
+</mapper>

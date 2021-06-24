@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis业务文件-->
+<mapper namespace="com.yi.blog.mapper.DynamicMapper">
+    <select id="selectAll" resultType="com.yi.blog.pojo.Dynamic" parameterType="String">
+        select * from dynamic where 1=1
+    </select>
+    <update id="updateDynamic" parameterType="com.yi.blog.pojo.Dynamic">
+        UPDATE blog.dynamic SET dynamic_context=#{dynamic_context} ,dynamic_time=#{dynamic_time} ,
+        dynamic_icon=#{dynamic_icon},dynamic_color = #{dynamic_color}
+        WHERE dynamic_id = #{dynamic_id}
+    </update>
+    <delete id="detectDynamic" parameterType="int">
+        delete  from blog.dynamic where dynamic_id=#{dynamic_id}
+    </delete>
+    <insert id="addDynamic" parameterType="Dynamic">
+        INSERT INTO blog.dynamic(dynamic_context, dynamic_time, dynamic_icon, dynamic_color)
+        VALUES (#{dynamic_context}, #{dynamic_time}, #{dynamic_icon}, #{dynamic_color})
+    </insert>
+    <select id="selectAllCount" resultType="Integer" parameterType="HashMap">
+        SELECT COUNT(dynamic_id) FROM dynamic where 1=1
+
+    </select>
+</mapper>

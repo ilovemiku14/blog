@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mybatis业务文件-->
+<mapper namespace="com.yi.blog.mapper.friendsMapper">
+    <select id="selectAll" resultType="com.yi.blog.pojo.friends" >
+        select * from blog.friend_msg where 1=1
+    </select>
+    <update id="updateFriends" parameterType="com.yi.blog.pojo.friends">
+        UPDATE blog.friend_msg SET brief_introduction=#{brief_introduction} ,qq_img=#{qq_img} ,
+        name=#{name}
+        WHERE id = #{id}
+    </update>
+    <delete id="detectFriends" parameterType="int">
+        delete  from blog.friend_msg where id=#{id}
+    </delete>
+    <insert id="addFriends" parameterType="friends">
+        INSERT INTO blog.friend_msg(brief_introduction, qq_img, name,)
+        VALUES (#{brief_introduction}, #{qq_img}, #{name})
+    </insert>
+    <select id="selectAllCount" resultType="Integer" parameterType="HashMap">
+        SELECT COUNT(axis) FROM friend_msg where 1=1
+    </select>
+</mapper>
